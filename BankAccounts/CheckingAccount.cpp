@@ -11,7 +11,9 @@ CheckingAccount::CheckingAccount(double long nBalance, double nAnnualInterest)
 }
 
 // Extra
+
 void CheckingAccount::withdraw(long double nWithdraw) {
+
 	long double tempBalance = this->getBalance();
 
 		if (this->isActive() && ((tempBalance - nWithdraw) >= 0)) {

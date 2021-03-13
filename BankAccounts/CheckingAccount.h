@@ -4,7 +4,7 @@
 #include "GenericAccount.h"
 using namespace std;
 
-class CheckingAccount : public GenericAccount {
+class CheckingAccount : public GenericAccount<CheckingAccount*>{
 private:
 
 public:
