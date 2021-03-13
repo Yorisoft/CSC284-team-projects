@@ -3,39 +3,41 @@
 
 using namespace std;
 
+template<class T>
 class GenericAccount {
 private:
-	double annualInterestRate, serviceCharge, monthlyOverdraft;
-	long double balance;
-	int numOfWithdrawals, numOfDeposits;
-	bool accountStatus;
+    T annualInterestRate, serviceCharge, monthlyOverdraft,
+    balance,
+    numOfWithdrawals, numOfDeposits,
+    accountStatus;
 
 public:
 	//constructors
 	GenericAccount();
-	GenericAccount(long double nBalance, double APR);
+	GenericAccount(T nBalance, T APR);
 
 	//setters
-	void setBalance(long double nBalance);
-	void setAnnualInterestRate(double APR);
-	void setServiceCharge(double nServiceCharge);
-	void setMonthlyOverdraft(double overdraftAmount);
-	void setNumOfWithdrawals(int nNum);
+	void setBalance(T nBalance);
+	void setAnnualInterestRate(T APR);
+	void setServiceCharge(T nServiceCharge);
+	void setMonthlyOverdraft(T overdraftAmount);
+	void setNumOfWithdrawals(T nNum);
 
 	//getters
-	int getNumOfWithdrawals() const;
-	int getNumOfDeposits() const;
-	double getServiceCharge() const;
-	double long getBalance() const;
-	double getMonthlyOverdraft() const;
-	double getAPR() const;
+    T getNumOfWithdrawals() const;
+    T getNumOfDeposits() const;
+    T getServiceCharge() const;
+    T getBalance() const;
+    T getMonthlyOverdraft() const;
+    T getAPR() const;
 
 	//extra
-	bool isActive();
-	virtual void deposit(long double nDeposit);
-	virtual void withdraw(long double nWithdraw);
-	virtual void calcInt();
-	virtual void monthlyProc();
+    T isActive();
+    T deposit(T nDeposit);
+    T withdraw(T nWithdraw);
+    T calcInt();
+    T monthlyProc();
+
 };
 
 #endif

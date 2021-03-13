@@ -4,73 +4,91 @@
 using namespace std;
 
 // Constructors
-GenericAccount::GenericAccount()
+template <class T>
+GenericAccount<T>::GenericAccount()
 : annualInterestRate(this->getAPR()), serviceCharge(0), monthlyOverdraft(0),
   balance(this->getBalance()), numOfWithdrawals(0), numOfDeposits(0),
   accountStatus(this->isActive()) {
     // ...
 }
-GenericAccount::GenericAccount(long double nBalance, double APR) : GenericAccount(){
+template <class T>
+GenericAccount<T>::GenericAccount(T nBalance, T APR) : GenericAccount(){
 	this->setBalance(nBalance);
 	this->setAnnualInterestRate(APR);
 }
 
 // Setters
-void GenericAccount::setBalance(long double nBalance) {
+template <class T>
+void GenericAccount<T>::setBalance(T nBalance) {
 	balance = nBalance;
 }
-void GenericAccount::setAnnualInterestRate(double APR) {
+template <class T>
+void GenericAccount<T>::setAnnualInterestRate(T APR) {
 	annualInterestRate = APR;
 }
-void GenericAccount::setServiceCharge(double nServiceCharge) {
+template <class T>
+void GenericAccount<T>::setServiceCharge(T nServiceCharge) {
 	serviceCharge = nServiceCharge;
 }
-void GenericAccount::setMonthlyOverdraft(double overdraftAmount) {
+template <class T>
+void GenericAccount<T>::setMonthlyOverdraft(T overdraftAmount) {
 	monthlyOverdraft = overdraftAmount;
 }
-void GenericAccount::setNumOfWithdrawals(int nNum) {
+template <class T>
+void GenericAccount<T>::setNumOfWithdrawals(T nNum) {
     numOfWithdrawals = nNum;
 }
 
 // Getters
-double GenericAccount::getServiceCharge() const {
+template <class T>
+T GenericAccount<T>::getServiceCharge() const {
 	return serviceCharge;
 }
-int GenericAccount::getNumOfWithdrawals() const {
+template <class T>
+T GenericAccount<T>::getNumOfWithdrawals() const {
 	return numOfWithdrawals;
 }
-int GenericAccount::getNumOfDeposits() const {
+template <class T>
+T GenericAccount<T>::getNumOfDeposits() const {
 	return numOfDeposits;
 }
-double long GenericAccount::getBalance() const {
+template <class T>
+T GenericAccount<T>::getBalance() const {
 	return balance;
 }
-double GenericAccount::getMonthlyOverdraft() const {
+template <class T>
+T GenericAccount<T>::getMonthlyOverdraft() const {
 	return monthlyOverdraft;
 }
-double GenericAccount::getAPR() const {
+template <class T>
+T GenericAccount<T>::getAPR() const {
     return annualInterestRate;
 }
 
 // Extra
-bool GenericAccount::isActive() {
+template <class T>
+T GenericAccount<T>::isActive() {
 	balance < 25 ? accountStatus = false : accountStatus = true;
 	return accountStatus;
 }
-void GenericAccount::deposit(long double nDeposit) {
+template <class T>
+T GenericAccount<T>::deposit(T nDeposit) {
 	balance += nDeposit;
 	numOfDeposits++;
 }
-void GenericAccount::withdraw(long double nWithdraw) {
+template <class T>
+T GenericAccount<T>::withdraw(T nWithdraw) {
 	balance -= nWithdraw;
 	numOfWithdrawals++;
 }
-void GenericAccount::calcInt() {
+template <class T>
+T GenericAccount<T>::calcInt() {
 	double monthlyInterestRate = (annualInterestRate / 12);
 	long double monthlyInterest = (balance * monthlyInterestRate);
 	balance += monthlyInterest;
 }
-void GenericAccount::monthlyProc() {
+template <class T>
+T GenericAccount<T>::monthlyProc() {
 	balance -= serviceCharge;
 	balance -= serviceCharge;
 	this->calcInt();

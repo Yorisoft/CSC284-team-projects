@@ -1,5 +1,4 @@
 // This is the implementation file for SavingsAccount.h class
-
 #include<iostream>
 #include "CheckingAccount.h"
 #include "InactiveAccount.h"
@@ -7,7 +6,7 @@ using namespace std;
 
 // Constructor
 CheckingAccount::CheckingAccount(double long nBalance, double nAnnualInterest)
-	: GenericAccount (nBalance, nAnnualInterest){
+	: GenericAccount(nBalance, nAnnualInterest){
 
 }
 

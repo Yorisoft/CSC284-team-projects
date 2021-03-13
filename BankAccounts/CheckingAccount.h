@@ -12,8 +12,8 @@ public:
 	CheckingAccount(double long nBalance, double nAnnualInterest);
 
 	//extra
-	void monthlyProc() override;
-	void withdraw(long double nWithdraw) override;
+	void withdraw(long double nWithdraw);//override
+    void monthlyProc(); //override
 
 };
 
