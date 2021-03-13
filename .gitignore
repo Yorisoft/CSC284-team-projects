@@ -34,3 +34,7 @@
 # PDF files
 
 *.pdf
+
+# IDE
+*.idea
+cmake-build-debug
