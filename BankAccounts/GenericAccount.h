@@ -36,7 +36,6 @@ public:
 	virtual void withdraw(long double nWithdraw);
 	virtual void calcInt();
 	virtual void monthlyProc();
-
 };
 
 #endif
