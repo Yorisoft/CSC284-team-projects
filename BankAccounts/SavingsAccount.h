@@ -8,22 +8,23 @@ class SavingsAccount :
         public GenericAccount<long int>,
         public GenericAccount<double>,
         public GenericAccount<int>,
-        public GenericAccount<bool>{
-private: 
+        public GenericAccount<bool> {
+private:
 
 public:
-	//constructor
-	SavingsAccount(long double nBalance, double APR);
+    //constructor
+    SavingsAccount(long double nBalance, double APR);
 
-	//setters
+    //setters
 
-	//getters
+    //getters
 
 
 //extra
-	void withdraw(long double nWithdrawal);  //override;
-	void deposit(long double nDeposit); // override;
-	void monthlyProc();  //override;
-	
+    void withdraw(long double nWithdrawal);  //override;
+    void deposit(long double nDeposit); // override;
+    void monthlyProc();  //override;
+
 };
+
 #endif

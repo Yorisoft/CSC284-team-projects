@@ -6,11 +6,11 @@ project(BankAccounts
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(BankAccounts main.cpp
-                GenericAccount.h
-                GenericAccount.cpp
-                CheckingAccount.h
-                CheckingAccount.cpp
-                SavingsAccount.h
-                SavingsAccount.cpp
-                InactiveAccount.cpp
-                InactiveAccount.h)
+        GenericAccount.h
+        GenericAccount.cpp
+        CheckingAccount.h
+        CheckingAccount.cpp
+        SavingsAccount.h
+        SavingsAccount.cpp
+        InactiveAccount.cpp
+        InactiveAccount.h)

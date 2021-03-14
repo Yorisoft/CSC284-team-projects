@@ -1,6 +1,5 @@
 #ifndef GENERIC_ACCOUNT
 #define GENERIC_ACCOUNT
-
 using namespace std;
 
 template<class T>
@@ -9,21 +8,21 @@ private:
     T annualInterestRate, serviceCharge, monthlyOverdraft, // double
     balance, // long double
     numOfWithdrawals, numOfDeposits; // int
-    bool accountStatus; //bool
+    bool accountStatus;
 
 public:
-	//constructors
-	GenericAccount();
-	GenericAccount(T nBalance, T APR);
+    //constructors
+    GenericAccount();
+    GenericAccount(T nBalance, T APR);
 
     //setters
-	void setBalance(T nBalance);
-	void setAnnualInterestRate(T APR);
-	void setServiceCharge(T nServiceCharge);
-	void setMonthlyOverdraft(T overdraftAmount);
-	void setNumOfWithdrawals(T nNum);
+    void setBalance(T nBalance);
+    void setAnnualInterestRate(T APR);
+    void setServiceCharge(T nServiceCharge);
+    void setMonthlyOverdraft(T overdraftAmount);
+    void setNumOfWithdrawals(T nNum);
 
-	//getters
+    //getters
     T getNumOfWithdrawals() const;
     T getNumOfDeposits() const;
     T getServiceCharge() const;
@@ -37,7 +36,6 @@ public:
     void withdraw(T nWithdraw);
     void calcInt();
     void monthlyProc();
-
 };
 
 #endif

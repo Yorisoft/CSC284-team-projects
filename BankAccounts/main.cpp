@@ -9,7 +9,6 @@
 #include "CheckingAccount.h"
 #include "InactiveAccount.h"
 #include "GenericAccount.cpp"
-
 using namespace std;
 
 void printBanner();
@@ -56,23 +55,29 @@ int main() {
             transaction = getValidTransaction();
 
             switch (transaction) {
-                case 1: checkingDeposit(CheckingAccountPtr);
-                    cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance() << endl
-                         << endl;
+                case 1:
+                    checkingDeposit(CheckingAccountPtr);
+                    cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance()
+                         << endl << endl;
                     break;
-                case 2: checkingWithdrawal(CheckingAccountPtr);
-                    cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance() << endl
-                         << endl;
+                case 2:
+                    checkingWithdrawal(CheckingAccountPtr);
+                    cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance()
+                         << endl << endl;
                     break;
-                case 3: savingDeposit(SavingsAccountPtr);
-                    cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance() << endl
-                         << endl;
+                case 3:
+                    savingDeposit(SavingsAccountPtr);
+                    cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance()
+                         << endl << endl;
                     break;
-                case 4: savingWithdrawal(SavingsAccountPtr);
-                    cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance() << endl
-                         << endl;
+                case 4:
+                    savingWithdrawal(SavingsAccountPtr);
+                    cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance()
+                         << endl << endl;
                     break;
-                case 5: printEndOfMonth(CheckingAccountPtr, SavingsAccountPtr, startingCheckingBalance, startingSavingBalance);
+                case 5:
+                    printEndOfMonth(CheckingAccountPtr, SavingsAccountPtr, startingCheckingBalance,
+                                    startingSavingBalance);
                     break;
                 default:
                     cout << "Invalid selection.. Try again.." << endl << endl;
@@ -107,13 +112,13 @@ void printInterface() {
          << '\t' << "5. Print out End-Of-Month review message " << endl << endl;
 }
 
-int getValidTransaction(){
+int getValidTransaction() {
     int usrInput;
     cin >> usrInput;
 
     cout << "What transaction would you like to perform ? (1 - 5) ";
 
-    while((!isdigit(usrInput) || usrInput < 1 || usrInput > 5)){
+    while ((!isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
         cout << "Please enter an integer 1 - 5:";
         cin >> usrInput;
     }
@@ -127,6 +132,7 @@ void checkingDeposit(CheckingAccount *nCheckingAccountPtr) {
     cin >> newDeposit;
 
     nCheckingAccountPtr->GenericAccount<long double>::deposit(newDeposit);
+    cout << "Finished transaction.." << endl;
 }
 
 void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr) {
@@ -137,7 +143,6 @@ void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr) {
         cin >> newWithdrawal;
 
         nCheckingAccountPtr->withdraw(newWithdrawal);
-
         cout << "Finished transaction.." << endl;
     }
     catch (InactiveAccount &e) {
@@ -154,6 +159,7 @@ void savingDeposit(SavingsAccount *nSavingsAccountPtr) {
         cin >> newDeposit;
 
         nSavingsAccountPtr->deposit(newDeposit);
+        cout << "Finished transaction.." << endl;
     }
     catch (InactiveAccount &e) {
         throw e;
@@ -168,7 +174,6 @@ void savingWithdrawal(SavingsAccount *nSavingsAccountPtr) {
         cin >> newWithdrawal;
 
         nSavingsAccountPtr->withdraw(newWithdrawal);
-
         cout << "Finished transaction.." << endl;
     }
     catch (InactiveAccount &e) {
@@ -191,38 +196,28 @@ void printEndOfMonth(CheckingAccount *nCheckingAccountPtr, SavingsAccount *nSavi
         cout << "This is your end of month review: " << endl
              << "\t" << "Checking Account: " << endl
              << "\t\t" << "Starting Balance: " << startingCheckingBalance << endl
-             << "\t\t" << "Total Num. of deposits: " << nCheckingAccountPtr->GenericAccount<int>::getNumOfDeposits()
-             << endl
+             << "\t\t" << "Total Num. of deposits: " << nCheckingAccountPtr->GenericAccount<int>::getNumOfDeposits() << endl
              << "\t\t" << "Total Num. of withdrawals: "
              << nCheckingAccountPtr->GenericAccount<int>::getNumOfWithdrawals() << endl;
         nCheckingAccountPtr->monthlyProc();
-        cout << "\t\t" << "Service Fees:       -" << nCheckingAccountPtr->GenericAccount<double>::getServiceCharge()
-             << endl
-             << "\t\t" << "Monthly Overdrafts: -" << nCheckingAccountPtr->GenericAccount<double>::getMonthlyOverdraft()
-             << endl
+        cout << "\t\t" << "Service Fees:       -" << nCheckingAccountPtr->GenericAccount<double>::getServiceCharge() << endl
+             << "\t\t" << "Monthly Overdrafts: -" << nCheckingAccountPtr->GenericAccount<double>::getMonthlyOverdraft() << endl
              << "\t\t" << "Total in Fees and Overdraft: -"
              << (nCheckingAccountPtr->GenericAccount<double>::getServiceCharge()
                  + nCheckingAccountPtr->GenericAccount<double>::getMonthlyOverdraft()) << endl
-             << "\t\t" << "Ending Balance: " << nCheckingAccountPtr->GenericAccount<long double>::getBalance() << endl
-             << endl;
+             << "\t\t" << "Ending Balance: " << nCheckingAccountPtr->GenericAccount<long double>::getBalance() << endl << endl;
     } else {
         // Savings
         cout << "\t" << "Savings Account: " << endl
              << "\t\t" << "Starting Balance: " << startingSavingBalance << endl
-             << "\t\t" << "Total Num. of deposits: " << nSavingsAccountPtr->GenericAccount<int>::getNumOfDeposits()
-             << endl
-             << "\t\t" << "Total Num. of withdrawals: "
-             << nSavingsAccountPtr->GenericAccount<int>::getNumOfWithdrawals() << endl;
+             << "\t\t" << "Total Num. of deposits: " << nSavingsAccountPtr->GenericAccount<int>::getNumOfDeposits() << endl
+             << "\t\t" << "Total Num. of withdrawals: " << nSavingsAccountPtr->GenericAccount<int>::getNumOfWithdrawals() << endl;
         nSavingsAccountPtr->monthlyProc();
-        cout << "\t\t" << "Service Fees:      " << nSavingsAccountPtr->GenericAccount<double>::getServiceCharge()
-             << endl
-             << "\t\t" << "Monthly Overdrafts: " << nSavingsAccountPtr->GenericAccount<double>::getMonthlyOverdraft()
-             << endl
+        cout << "\t\t" << "Service Fees:      " << nSavingsAccountPtr->GenericAccount<double>::getServiceCharge() << endl
+             << "\t\t" << "Monthly Overdrafts: " << nSavingsAccountPtr->GenericAccount<double>::getMonthlyOverdraft() << endl
              << "\t\t" << "Total in Fees and Overdraft: "
              << (nSavingsAccountPtr->GenericAccount<double>::getServiceCharge()
                  + nSavingsAccountPtr->GenericAccount<double>::getMonthlyOverdraft()) << endl
-             << "\t\t" << "Ending Balance: " << nSavingsAccountPtr->GenericAccount<long double>::getBalance() << endl
-             << endl;
-
+             << "\t\t" << "Ending Balance: " << nSavingsAccountPtr->GenericAccount<long double>::getBalance() << endl << endl;
     }
 }

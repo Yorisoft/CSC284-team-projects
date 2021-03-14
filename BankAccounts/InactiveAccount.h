@@ -3,16 +3,16 @@
 
 #include<string>
 #include<iostream>
+
 using namespace std;
 
-class InactiveAccount : public exception
-{
+class InactiveAccount : public exception {
 private:
-	const string errorMsg = "Account is inactive..";
+    const string errorMsg = "Account is inactive..";
 
 public:
-	// Accessors
-	string getError() const;
+    // Accessors
+    string getError() const;
 };
 
 #endif
