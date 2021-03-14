@@ -6,17 +6,17 @@ using namespace std;
 template<class T>
 class GenericAccount {
 private:
-    T annualInterestRate, serviceCharge, monthlyOverdraft,
-    balance,
-    numOfWithdrawals, numOfDeposits,
-    accountStatus;
+    T annualInterestRate, serviceCharge, monthlyOverdraft, // double
+    balance, // long double
+    numOfWithdrawals, numOfDeposits; // int
+    bool accountStatus; //bool
 
 public:
 	//constructors
 	GenericAccount();
 	GenericAccount(T nBalance, T APR);
 
-	//setters
+    //setters
 	void setBalance(T nBalance);
 	void setAnnualInterestRate(T APR);
 	void setServiceCharge(T nServiceCharge);
@@ -31,12 +31,12 @@ public:
     T getMonthlyOverdraft() const;
     T getAPR() const;
 
-	//extra
-    T isActive();
-    T deposit(T nDeposit);
-    T withdraw(T nWithdraw);
-    T calcInt();
-    T monthlyProc();
+    //extra
+    bool isActive();
+    void deposit(T nDeposit);
+    void withdraw(T nWithdraw);
+    void calcInt();
+    void monthlyProc();
 
 };
 

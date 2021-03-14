@@ -4,17 +4,27 @@
 using namespace std;
 
 // Constructors
+//template <class T>
+//GenericAccount<T>::GenericAccount()
+//: annualInterestRate(this->getAPR()), serviceCharge(0), monthlyOverdraft(0),
+//  balance(this->getBalance()), numOfWithdrawals(0), numOfDeposits(0),
+//  accountStatus(this->isActive()) {
+//    // ...
+//}
+
 template <class T>
-GenericAccount<T>::GenericAccount()
-: annualInterestRate(this->getAPR()), serviceCharge(0), monthlyOverdraft(0),
-  balance(this->getBalance()), numOfWithdrawals(0), numOfDeposits(0),
-  accountStatus(this->isActive()) {
-    // ...
+GenericAccount<T>::GenericAccount(){
+
 }
+
 template <class T>
-GenericAccount<T>::GenericAccount(T nBalance, T APR) : GenericAccount(){
+GenericAccount<T>::GenericAccount(T nBalance, T APR)
+: serviceCharge(0), monthlyOverdraft(0), numOfWithdrawals(0),
+numOfDeposits(0) {
+
 	this->setBalance(nBalance);
 	this->setAnnualInterestRate(APR);
+    accountStatus = this->isActive();
 }
 
 // Setters
@@ -66,29 +76,29 @@ T GenericAccount<T>::getAPR() const {
 }
 
 // Extra
-template <class T>
-T GenericAccount<T>::isActive() {
+template <typename T>
+bool GenericAccount<T>::isActive() {
 	balance < 25 ? accountStatus = false : accountStatus = true;
 	return accountStatus;
 }
 template <class T>
-T GenericAccount<T>::deposit(T nDeposit) {
+void GenericAccount<T>::deposit(T nDeposit) {
 	balance += nDeposit;
 	numOfDeposits++;
 }
 template <class T>
-T GenericAccount<T>::withdraw(T nWithdraw) {
+void GenericAccount<T>::withdraw(T nWithdraw) {
 	balance -= nWithdraw;
 	numOfWithdrawals++;
 }
 template <class T>
-T GenericAccount<T>::calcInt() {
+void GenericAccount<T>::calcInt() {
 	double monthlyInterestRate = (annualInterestRate / 12);
 	long double monthlyInterest = (balance * monthlyInterestRate);
 	balance += monthlyInterest;
 }
 template <class T>
-T GenericAccount<T>::monthlyProc() {
+void GenericAccount<T>::monthlyProc() {
 	balance -= serviceCharge;
 	balance -= serviceCharge;
 	this->calcInt();
@@ -97,3 +107,4 @@ T GenericAccount<T>::monthlyProc() {
 	monthlyOverdraft = 0;
 	accountStatus = isActive();
 }
+

@@ -3,7 +3,12 @@
 
 #include "GenericAccount.h"
 
-class SavingsAccount : public GenericAccount {
+class SavingsAccount :
+        public GenericAccount<long double>,
+        public GenericAccount<long int>,
+        public GenericAccount<double>,
+        public GenericAccount<int>,
+        public GenericAccount<bool>{
 private: 
 
 public:
@@ -14,10 +19,11 @@ public:
 
 	//getters
 
-	//extra
-	void withdraw(long double nWithdrawal) override;
-	void deposit(long double nDeposit) override;
-	void monthlyProc() override;
+
+//extra
+	void withdraw(long double nWithdrawal);  //override;
+	void deposit(long double nDeposit); // override;
+	void monthlyProc();  //override;
 	
 };
 #endif
