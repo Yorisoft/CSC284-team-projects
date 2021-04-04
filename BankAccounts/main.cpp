@@ -3,8 +3,11 @@
 // Prof Carmelito Moreno - CSC 284-H1
 // Yelsin Sepulveda
 
+
+#include<cstdlib>
 #include<iostream>
 #include<string>
+#include <iomanip>
 #include "SavingsAccount.h"
 #include "CheckingAccount.h"
 #include "InactiveAccount.h"
@@ -22,6 +25,7 @@ void printEndOfMonth(CheckingAccount *nCheckingAccountPtr, SavingsAccount *nSavi
                      long double &startingCheckingBalance, long double &startingSavingBalance);
 
 int main() {
+    // VARIABLES
     string choice = "yes";
     int transaction;
     double APR;
@@ -31,19 +35,19 @@ int main() {
 
     printBanner();
 
+    // COLLECT USER STARTING CHECKING BALANCE
     cout << "What would you like as your starting balance for your Checking account ?? "
-            "( Minimum of $25 to activate account)  ";
-    cin >> startingCheckingBalance;
-    cin.ignore(100, '\n');
+        "( Minimum of $25 to activate account)  ";
+    cin >> startingCheckingBalance; cin.ignore(100, '\n');
 
+    // COLLECT USER STARTING SAVING BALANCE
     cout << "What would you like as your starting balance for your Savings account ?? "
-            "( Minimum of $25 to activate account)  ";
-    cin >> startingSavingBalance;
-    cin.ignore(100, '\n');
+        "( Minimum of $25 to activate account)  ";
+    cin >> startingSavingBalance; cin.ignore(100, '\n');
 
+    // COLLECT USER APR VALUE
     cout << "What is the annual interest rate for your Savings account?? ";
-    cin >> APR;
-    cin.ignore(100, '\n');
+    cin >> APR; cin.ignore(100, '\n');
 
     // Initializing new checking and savings account object
     CheckingAccountPtr = new CheckingAccount(startingCheckingBalance, APR);
@@ -58,22 +62,22 @@ int main() {
                 case 1:
                     checkingDeposit(CheckingAccountPtr);
                     cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance()
-                         << endl << endl;
+                         << endl;
                     break;
                 case 2:
                     checkingWithdrawal(CheckingAccountPtr);
                     cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance()
-                         << endl << endl;
+                         << endl;
                     break;
                 case 3:
                     savingDeposit(SavingsAccountPtr);
                     cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance()
-                         << endl << endl;
+                         << endl;
                     break;
                 case 4:
                     savingWithdrawal(SavingsAccountPtr);
                     cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance()
-                         << endl << endl;
+                         << endl;
                     break;
                 case 5:
                     printEndOfMonth(CheckingAccountPtr, SavingsAccountPtr, startingCheckingBalance,
@@ -89,12 +93,14 @@ int main() {
                  << '\t' << e.getError() << endl;
         }
 
-        cout << "Would you like to enter another transaction ? [Y/n] ";
-        cin.ignore(100, '\n');
-        getline(cin, choice);
+        cout << "Would you like to enter another transaction ? [Y/n] " ;
+        cin >> choice; cin.ignore(100, '\n');
     }
 
-    system("pause");
+    delete CheckingAccountPtr;
+    delete SavingsAccountPtr;
+
+    //system("pause");
     return 0;
 }
 
@@ -114,11 +120,11 @@ void printInterface() {
 
 int getValidTransaction() {
     int usrInput;
-    cin >> usrInput;
 
     cout << "What transaction would you like to perform ? (1 - 5) ";
+    cin >> usrInput;
 
-    while ((!isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
+    while ((isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
         cout << "Please enter an integer 1 - 5:";
         cin >> usrInput;
     }
@@ -129,9 +135,9 @@ void checkingDeposit(CheckingAccount *nCheckingAccountPtr) {
     long double newDeposit;
 
     cout << "How much would you like to deposit into your checking account ? ";
-    cin >> newDeposit;
+    cin >> newDeposit; cin.ignore(100, '\n');
 
-    nCheckingAccountPtr->GenericAccount<long double>::deposit(newDeposit);
+    nCheckingAccountPtr->deposit(newDeposit);
     cout << "Finished transaction.." << endl;
 }
 
@@ -140,7 +146,7 @@ void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr) {
 
     try {
         cout << "How much would you like to withdraw from your checking account ? ";
-        cin >> newWithdrawal;
+        cin >> newWithdrawal; cin.ignore(100, '\n');
 
         nCheckingAccountPtr->withdraw(newWithdrawal);
         cout << "Finished transaction.." << endl;
@@ -156,7 +162,7 @@ void savingDeposit(SavingsAccount *nSavingsAccountPtr) {
 
     try {
         cout << "How much would you like to deposit into your savings account ? ";
-        cin >> newDeposit;
+        cin >> newDeposit; cin.ignore(100, '\n');
 
         nSavingsAccountPtr->deposit(newDeposit);
         cout << "Finished transaction.." << endl;
@@ -171,7 +177,7 @@ void savingWithdrawal(SavingsAccount *nSavingsAccountPtr) {
 
     try {
         cout << "How much would you like to withdraw from your savings account ? ";
-        cin >> newWithdrawal;
+        cin >> newWithdrawal; cin.ignore(100, '\n');
 
         nSavingsAccountPtr->withdraw(newWithdrawal);
         cout << "Finished transaction.." << endl;
@@ -183,13 +189,13 @@ void savingWithdrawal(SavingsAccount *nSavingsAccountPtr) {
 
 void printEndOfMonth(CheckingAccount *nCheckingAccountPtr, SavingsAccount *nSavingsAccountPtr,
                      long double &startingCheckingBalance, long double &startingSavingBalance) {
+    cout << setprecision(2) << fixed;
     int accountChosen;
 
     cout << "What account would you like to print?" << endl
          << "1. Checking " << endl
          << "2. Savings " << endl;
-    cin.ignore(100, '\n');
-    cin >> accountChosen;
+    cin >> accountChosen; cin.ignore(100, '\n');
 
     if (accountChosen == 1) {
         // Checking
