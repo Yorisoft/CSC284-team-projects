@@ -36,5 +36,9 @@
 *.pdf
 
 # IDE
+*.vs
 *.idea
+*.sln
+*.vcxproj
+*.vcxproj.**
 cmake-build-debug

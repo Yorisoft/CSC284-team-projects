@@ -1,0 +1,290 @@
+	BillsManagementProject
+	
+	Workflow --------------------------------------------
+	
+	1.Login Bill Management – not required
+		Storage:
+			text file: Either plain txt file, or json format file. ( need to look up c++ with json JsonCpp)
+			
+	  	ALTERNATIVE: CREATE ACCOUNT
+			
+	2. Bill Management 
+		- Print out / Display welcome mssg - (MAIN PAGE)
+		info of the list of creditors, the amount of credits, the amount of current bills, the due dates
+		
+    	a.	Select creditor to manage
+    		- Print out / Display creditor info - (CREDITOR PAGE)
+    	b.	Select a transaction OR move to diffent creditor
+    		transaction:
+    		- Minus-or-Plus to total amount due - (TRANSACTION PAGE)
+    		- Transaction is proccessed
+    		move to diffent creditor:
+    		- Go to main page or different creditor page - (CREDITOR PAGE)/(MAIN PAGE)
+    	c.	Go to main page.
+    	
+	3.logout from the system.
+
+	Start-Login--check Login ID Password---login successful--Access the system.
+	
+	Classes and Functions --------------------------------------------
+	
+		class Login
+			private:
+				string userEmail = "" , userPsw = "" ;
+				bool isLoggedIn = false;
+				
+			public:
+			//constructor
+				constructor() {
+					// serch for login database file, if does not exist create it - loginDatabase.txt(or json)
+				}
+			
+			//setters
+				setUserEmail(nUserEmail) {
+					userEmail = nUserEmail;
+				}
+				setUserPass(nUserPass) {
+					userPsw = nUserPass;
+				}
+				setIsLoggedIn(bool nStatus) {
+					isLoggedIn = nStatus;
+				}
+				
+			//getters
+				getUserEmail() const {
+					return nUserEmail;
+				}
+				getUserPass() const {
+					return userPsw;
+				}
+				
+			//extra
+				validateLogin(string userEmail, string nUserPsw){
+					string fileName = userEmail;
+					// check if the file includes an entry equal to userEmail
+					
+						// if so, get userpassword
+							// if passwords match, return isLoggedIn as true;
+					
+						// if neither entry or password match up, throw invalid login execption;
+					
+					// return User object = new User(nUserName, nUserPsw);
+				}
+			
+				createLogin(string userEmail, string nUserPsw){
+					string fileName = userEmail;
+					// check if the file includes an entry equal to userEmail
+					
+						// if not-true, create a new entry named after userEmail and insert userPsw, set isLoggedIn to true 
+					
+						// if true, prompt user to enter previous credentials;
+					
+					// return User object = new User(nUserName, nUserPsw);
+				}			
+				
+				forgotPasswordOnClick(){
+					string nUserEmail;
+					// promt for User Email
+					
+					// if no file named after the nUserEmail not exist, promt user to create account
+					// if file named after nUserEmail does exist, send promt for new password and replace it in the file
+				}
+		
+	   --------------------------------------------------------------	
+					
+		class User 
+			private:
+				string userName;
+				int numOfCreditors;
+				string creditorInfo;
+				vector<string> creditors;
+				
+			public:
+			//constructor
+				User(string nUserName) :
+				userName(nUserName) {
+					// serach for OR create a files to serve as user/creditor database ( named after the nUserName )
+						// If file was previously created, 
+							- look inside database file of user and add all creditor names to creditors vector
+							- set numOfCreditors = creditors.size();
+						// If no file found,
+							- create file and set numOfCreditors = 0;
+					this->setNumOfCreditors(creditors.size());
+					
+				}
+			
+			//setters
+				setNumOfCreditors() const { 		
+					// - set numOfCreditors = creditors.size();
+				}
+				
+			//getters
+				getCreditorInfo() const { 					// possible onClick function
+					// look inside user database file, find the selected creditor 
+					// set creditorInfo = the selected creditor info
+					// return creditorInfo
+				}
+				
+				getCreditorNames(int creditorNum) const { 	// possible onClick function
+					// look inside user database file, find creditor by creditorNum 
+					// set creditorInfo = the selected creditor info
+					// return creditorInfo
+				}
+				
+			//extra
+				addNewCreditor(string nCreditorName, long double amountOwed){
+					
+					creditors.pushback nCreditorName;
+					
+				}
+				
+	   --------------------------------------------------------------
+
+
+			payment being processed, opening of new credit, the closing of the credit
+			
+			Creditor class
+			private:
+				string creditorName;
+				vector<string> transactionHistory;
+				long double amountOwed;
+				double annualInterestRate;
+				int numOfPayments;
+				
+			public:
+			//constructor
+				constructor(string nCreditorName, long double newDebt, double newInterestRate){
+					this->setCreditName(nCreditorName);
+					this->setAmountOwed(newDebt);
+					this->setAnnualInterestRate(newInterestRate);
+					
+				}
+				
+			//setters
+				setCreditName(string creditorName){
+					// set creditorName
+				}
+				setAmountOwed(long double newDebt){
+					// set amountOwed
+				}
+				setAnnualInterestRate(double annualInterestRate){
+					// set annualInterestRate
+				}
+				
+			//getters
+				getCreditName() const {
+					// get creditorName
+				}
+				getAmountOwed() const {
+					// get amountOwed
+				}
+				getAnnualInterestRate() const {
+					// get annualInterestRate
+				}
+			
+			//extra
+				processTransaction(long double nAmount){
+					auto dateStamp;
+					
+					try{
+						amountOwed = (this->getAmountOwed() + nAmount);
+						// print to file 'dateStamp - creditorName - nAmount - amountOwed'
+					} catch (...){
+						throw e;
+					}
+					
+					if(nAmount > 0 ){
+						numOfPayments++;
+					}
+					
+					
+				}
+				
+				
+				
+	   --------------------------------------------------------------
+	   
+		class Notification
+			private:
+				string userEmail;
+				double  userPhone;
+				boolean textIsActive, emailIsActive;
+				
+			public:
+			//constructor
+				Notification(User nUser) :
+				textIsActive(false), emailIsActive(false){
+					userEmail = nUser->getUserEmail();
+					userPhone = nUser->getuserPhone();
+				}
+			
+			//setters
+				setUserEmail(nEmail){
+					userEmail = nEmail;
+				}
+				setUserPhone(nPhone){
+					userPhone = nPhone;
+				}
+				setIsTextActive(bool nStatus){
+					textIsActive = nStatus;
+				}
+				setIsEmailActive(bool nStatus){
+					emailIsActive = nStatus;
+				}
+				
+			//getters
+				getUserEmail() const {
+					return userEmail;	
+				}
+				getUserPhone() const {
+					return userPhone;
+				}
+				getIsTextActive(bool nStatus) const {
+					return textIsActive;
+				}
+				getIsEmailActive(bool nStatus) const {
+					return emailIsActive;
+				}
+				
+			//extra	
+				sendEmailNotification(){
+					try{
+						if ( emailIsActive == true ){
+							// send email notification
+						}
+					} catch(...){
+						throw e;
+					}
+				}
+				sendTextNotification(){
+					try{
+						if ( textIsActive == true ){
+							// send text notification
+						}
+					} catch(...){
+						throw e;
+					}
+				}
+		
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
