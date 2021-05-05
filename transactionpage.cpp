@@ -30,7 +30,11 @@ void TransactionPage::on_pushButton_logout_clicked()
 
 // update the creditor that you chose using the checkbox
 
-/* void TransactionPage::on_pushButton_updateCreditors_clicked()
+ void TransactionPage::on_pushButton_updateCreditors_clicked()
 {
 
-}*/
+     hide();
+     updatecreditos = new Updatecreditor(this);
+     updatecreditos ->show();
+
+}

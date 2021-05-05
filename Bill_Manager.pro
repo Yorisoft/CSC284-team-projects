@@ -20,19 +20,22 @@ SOURCES += \
     forgotpassword.cpp \
     main.cpp \
     login.cpp \
-    transactionpage.cpp
+    transactionpage.cpp \
+    updatecreditor.cpp
 
 HEADERS += \
     createnewaccount.h \
     forgotpassword.h \
     login.h \
-    transactionpage.h
+    transactionpage.h \
+    updatecreditor.h
 
 FORMS += \
     createnewaccount.ui \
     forgotpassword.ui \
     login.ui \
-    transactionpage.ui
+    transactionpage.ui \
+    updatecreditor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

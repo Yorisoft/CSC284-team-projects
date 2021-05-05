@@ -2,6 +2,8 @@
 #define TRANSACTIONPAGE_H
 
 #include <QDialog>
+#include "updatecreditor.h"
+
 
 namespace Ui {
 class TransactionPage;
@@ -22,10 +24,11 @@ private slots:
 
   //  void on_pushButton_AddCreditors_clicked();
 
-  //  void on_pushButton_updateCreditors_clicked();
+    void on_pushButton_updateCreditors_clicked();
 
 private:
     Ui::TransactionPage *ui;
+    Updatecreditor *updatecreditos;
 };
 
 #endif // TRANSACTIONPAGE_H
