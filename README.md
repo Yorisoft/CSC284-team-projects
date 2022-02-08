@@ -1,2 +1,2 @@
-# CSC284-team-projects
-A collection of my team projects for CSC-284
+# CSC284-team-project
+Team projects for CSC-284
